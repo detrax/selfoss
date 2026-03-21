@@ -50,6 +50,9 @@ $rules = [
     'strict_param' => true,
     'declare_strict_types' => true,
     'simple_to_complex_string_variable' => true,
+
+    // Contradicts Rector
+    'random_api_migration' => false,
 ];
 
 $config = new PhpCsFixer\Config();
