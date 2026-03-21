@@ -138,9 +138,9 @@ class feed extends \spouts\spout {
                 $this->logger->debug('icon: using feed logo: ' . $faviconUrl);
 
                 return $faviconUrl;
-            } else {
-                $this->logger->debug('icon: feed logo “' . $faviconUrl . '” not square enough with aspect ratio ' . $aspectRatio . '. Not using it.');
             }
+
+            $this->logger->debug('icon: feed logo “' . $faviconUrl . '” not square enough with aspect ratio ' . $aspectRatio . '. Not using it.');
         }
 
         // else fallback to the favicon of the associated web page

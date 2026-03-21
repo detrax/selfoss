@@ -122,12 +122,12 @@ final class ImageUtils {
             $imgsrc_regex = '#<\s*img [^\>]*src\s*=\s*(["\'])(.*?)\1#im';
             if (preg_match($imgsrc_regex, $html, $matches)) {
                 return htmlspecialchars_decode($matches[2]);
-            } else {
-                return null;
             }
-        } else {
+
             return null;
         }
+
+        return null;
     }
 
     /**

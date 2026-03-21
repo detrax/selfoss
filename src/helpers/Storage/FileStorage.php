@@ -27,11 +27,11 @@ final readonly class FileStorage {
 
         if ($written !== false) {
             return $filename;
-        } else {
-            $this->logger->warning('Unable to store file: ' . $url . '. Please check permissions of ' . $this->directory);
-
-            return null;
         }
+
+        $this->logger->warning('Unable to store file: ' . $url . '. Please check permissions of ' . $this->directory);
+
+        return null;
     }
 
     /**

@@ -26,11 +26,11 @@ final class Request {
             return json_decode($body, true);
         } elseif (preg_match('(^(application/x-www-form-urlencoded|multipart/form-data)\b)', $contentType) === 1) {
             return $_POST;
-        } else {
-            $body = $this->getBody();
-            parse_str($body, $data);
-
-            return $data;
         }
+
+        $body = $this->getBody();
+        parse_str($body, $data);
+
+        return $data;
     }
 }

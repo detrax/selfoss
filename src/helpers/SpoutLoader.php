@@ -54,9 +54,9 @@ final class SpoutLoader {
 
             if ($class instanceof spout) {
                 return $class;
-            } else {
-                return null;
             }
+
+            return null;
         } catch (\ReflectionException) {
             return null;
         }
@@ -90,7 +90,7 @@ final class SpoutLoader {
      *
      * @return array<class-string<P>, P> list of instantiated spouts associated to their class names
      */
-    protected function loadClasses(string $location, string $parentClassName): array {
+    private function loadClasses(string $location, string $parentClassName): array {
         $return = [];
 
         foreach (new \DirectoryIterator($location) as $dirInfo) {

@@ -19,7 +19,7 @@ use Selfoss\helpers\View;
 // TODO: Make readonly.
 final class Tags {
     /** @var ?StringKeyedArray<array{backColor: string, foreColor: string}> cache of tags and associated colors */
-    protected ?StringKeyedArray $tagsColors = null;
+    private ?StringKeyedArray $tagsColors = null;
 
     public function __construct(
         private readonly Authentication $authentication,

@@ -288,7 +288,7 @@ final readonly class ContentLoader {
      *
      * @return HtmlString sanitized content
      */
-    protected function sanitizeContent(HtmlString $content): HtmlString {
+    private function sanitizeContent(HtmlString $content): HtmlString {
         return HtmlString::fromRaw(htmLawed(
             $content->getRaw(),
             [
@@ -310,7 +310,7 @@ final readonly class ContentLoader {
      *
      * @return HtmlString sanitized content
      */
-    protected function sanitizeField(HtmlString $value): HtmlString {
+    private function sanitizeField(HtmlString $value): HtmlString {
         return HtmlString::fromRaw(htmLawed(
             $value->getRaw(),
             [
@@ -327,7 +327,7 @@ final readonly class ContentLoader {
      *
      * @return ?string path in the thumbnails directory
      */
-    protected function fetchThumbnail(string $url): ?string {
+    private function fetchThumbnail(string $url): ?string {
         try {
             $data = $this->webClient->request($url);
             $format = self::THUMBNAIL_FORMAT;
@@ -335,9 +335,9 @@ final readonly class ContentLoader {
 
             if ($image !== null) {
                 return $this->thumbnailStore->store($url, $image->getData());
-            } else {
-                $this->logger->error('thumbnail generation error: ' . $url);
             }
+
+            $this->logger->error('thumbnail generation error: ' . $url);
         } catch (\Throwable $e) {
             $this->logger->error("failed to retrieve thumbnail $url,", ['exception' => $e]);
 
@@ -354,7 +354,7 @@ final readonly class ContentLoader {
      *
      * @return ?string path in the favicons directory
      */
-    protected function fetchIcon(string $url): ?string {
+    private function fetchIcon(string $url): ?string {
         try {
             $data = $this->webClient->request($url);
             $format = Image::FORMAT_PNG;
@@ -362,9 +362,9 @@ final readonly class ContentLoader {
 
             if ($image !== null) {
                 return $this->iconStore->store($url, $image->getData());
-            } else {
-                $this->logger->error('icon generation error: ' . $url);
             }
+
+            $this->logger->error('icon generation error: ' . $url);
         } catch (\Throwable $e) {
             $this->logger->error("failed to retrieve image $url,", ['exception' => $e]);
 
@@ -449,7 +449,7 @@ final readonly class ContentLoader {
      * @param mixed $source source object
      * @param ?int $lastEntry timestamp of the newest item or NULL when no items were added
      */
-    protected function updateSource(mixed $source, ?int $lastEntry): void {
+    private function updateSource(mixed $source, ?int $lastEntry): void {
         // remove previous error
         if ($source['error'] !== null) {
             $this->sourcesDao->error($source['id'], '');
